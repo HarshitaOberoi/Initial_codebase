@@ -1,0 +1,92 @@
+
+trading:
+  simulated: false
+  symbol: BTCUSDT
+  additional_symbols: [ETHUSDT, SOLUSDT, XRPUSDT, BCHUSDT, LTCUSDT, DOGEUSDT, ADAUSDT]
+  timeframes: [1m, 5m, 1h]
+  exchange_rate_usdt_inr: 86
+  initial_balance: 1000
+  daily_loss_limit: 0.5
+  max_drawdown: 0.3
+  risk_per_trade:
+    1m: 0.015
+    5m: 0.025
+    1h: 0.035
+  risk_reward_ratio:
+    scalping: 1.5
+    long_swing: 3.0
+    swing: 2.0
+    trend: 2.5
+  volatility_adjustments:
+    high_volatility_threshold: 2.0
+    low_volatility_threshold: 0.5
+    high_vol_leverage_reduction: 2.0
+    high_vol_position_reduction: 0.5
+    low_vol_position_increase: 1.2
+api:
+  coindcx:
+    base_url: https://api.coindcx.com
+    ws_url: wss://stream.coindcx.com
+    api_key: "a5b20132ecfa7dec8995d1f564363bd6be63673344f08e85"
+    api_secret: "2d71408bac70102f53222e6262a48c1a906eedb6c833f007c3a0081e1abf985f"
+websocket:
+  url: wss://stream.coindcx.com
+  min_rows: 35
+strategies:
+  enabled: [scalping, swing, long_swing, trend]
+  scalping:
+    rsi_period: 14
+    stoch_k_period: 14
+    min_rsi: 55
+    rsi_overbought: 70
+    stoch_oversold: 45
+    stoch_overbought: 60
+    leverage: 5
+    max_spread: 0.001
+  long_swing:
+    rsi_period: 14
+    macd_signal_period: 9
+    atr_period: 14
+    min_rsi: 55
+    rsi_overbought: 70
+    leverage: 1
+    max_spread: 0.001
+  swing:
+    rsi_period: 14
+    bollinger_period: 20
+    min_rsi: 55
+    rsi_overbought: 70
+    leverage: 3
+    max_spread: 0.001
+  trend:
+    rsi_period: 14
+    atr_period: 14
+    min_rsi: 55
+    rsi_overbought: 70
+    leverage: 2
+    max_spread: 0.001
+indicators:
+  rsi:
+    period: 14
+  stochastic:
+    k: 14
+    d: 3
+    smooth: 3
+  macd:
+    fast: 12
+    slow: 26
+    signal: 9
+  bollinger:
+    period: 20
+    std: 2
+  atr:
+    period: 14
+  adx:
+    period: 14
+  volume_sma:
+    period: 20
+logging:
+  suppress_candle_logs: false
+  log_candles: true
+market:
+  type: futures
