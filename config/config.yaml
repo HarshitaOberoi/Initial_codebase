@@ -27,7 +27,7 @@ api:
   coindcx:
     base_url: https://api.coindcx.com
     ws_url: wss://stream.coindcx.com
-    api_key: "a5b20132ecfa7dec8995d1f564363bd6be63673344f08e85"
+    api_key: ""
     api_secret: ""
 websocket:
   url: wss://stream.coindcx.com
